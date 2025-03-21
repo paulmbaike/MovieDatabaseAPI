@@ -18,6 +18,11 @@ public static class ServiceCollectionExtensions
 
 
         services.AddScoped<IMovieRepository, MovieRepository>();
+        services.AddScoped<IActorRepository, ActorRepository>();
+        services.AddScoped<IDirectorRepository, DirectorRepository>();
+        services.AddScoped<IGenreRepository, GenreRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+
         return services;
     }
 }

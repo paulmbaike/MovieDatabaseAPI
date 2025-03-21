@@ -10,9 +10,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOpenApiDocumentation();
+builder.Services.AddJwtAuthentication(builder.Configuration);
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 builder.Services.AddRateLimiting();
+builder.Services.AddVersioning();
+builder.Services.AddResponseCaching();
 
 builder.Services.AddControllers();
 
@@ -34,6 +37,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.UseRateLimiter();
+app.UseResponseCaching();
 app.UseGlobalExceptionHandler();
 
 using (var scope = app.Services.CreateScope())
@@ -43,3 +47,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.Run();
+
+
+public partial class Program { }

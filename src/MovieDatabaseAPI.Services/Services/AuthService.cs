@@ -85,10 +85,12 @@ public class AuthService : IAuthService
                 new Claim(ClaimTypes.Name, user.Username)
             };
 
+        var mm = _configuration["JwtSettings:Secret"];
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(
             _configuration["JwtSettings:Secret"] ?? throw new InvalidOperationException("JWT Secret not configured")));
 
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var tokenDescriptor = new SecurityTokenDescriptor
         {

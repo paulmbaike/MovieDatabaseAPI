@@ -13,6 +13,9 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/MovieDatabaseAPI.API/MovieDatabaseAPI.API.csproj", "src/MovieDatabaseAPI.API/"]
+COPY ["src/MovieDatabaseAPI.Core/MovieDatabaseAPI.Core.csproj", "src/MovieDatabaseAPI.Core/"]
+COPY ["src/MovieDatabaseAPI.Infrastructure/MovieDatabaseAPI.Infrastructure.csproj", "src/MovieDatabaseAPI.Infrastructure/"]
+COPY ["src/MovieDatabaseAPI.Services/MovieDatabaseAPI.Services.csproj", "src/MovieDatabaseAPI.Services/"]
 RUN dotnet restore "./src/MovieDatabaseAPI.API/MovieDatabaseAPI.API.csproj"
 COPY . .
 WORKDIR "/src/src/MovieDatabaseAPI.API"
