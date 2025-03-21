@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MovieDatabaseAPI.Core.Helpers;
 using MovieDatabaseAPI.Core.Interfaces.Repositories;
+using MovieDatabaseAPI.Infrastructure.Extensions;
 using static MovieDatabaseAPI.Infrastructure.Data.Context.AppContext;
 
 namespace MovieDatabaseAPI.Infrastructure.Data.Repositories;
@@ -46,5 +48,10 @@ public class Repository<T> : IRepository<T> where T : class
             _dbSet.Remove(entity);
             await _context.SaveChangesAsync();
         }
+    }
+
+    public async Task<PagedList<T>> GetAllPagedAsync(PaginationParams paginationParams)
+    {
+        return await _dbSet.AsNoTracking().ToPagedListAsync(paginationParams.PageNumber, paginationParams.PageSize);
     }
 }
