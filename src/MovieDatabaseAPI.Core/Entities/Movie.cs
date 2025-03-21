@@ -2,7 +2,7 @@
 
 namespace MovieDatabaseAPI.Core.Entities;
 
-public class Movie
+public class Movie: AuditableEntity
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;

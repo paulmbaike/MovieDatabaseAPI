@@ -11,6 +11,10 @@ public static class ServiceCollectionExtensions
     {
         // Register services
         services.AddScoped<IMovieService, MovieService>();
+        services.AddScoped<IActorService, ActorService>();
+        services.AddScoped<IDirectorService, DirectorService>();
+        services.AddScoped<IGenreService, GenreService>();
+        services.AddScoped<IAuthService, AuthService>();
 
         // Register AutoMapper
         services.AddAutoMapper(typeof(MappingProfile).Assembly);

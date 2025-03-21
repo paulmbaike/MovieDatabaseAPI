@@ -1,6 +1,6 @@
 ﻿namespace MovieDatabaseAPI.Core.Entities;
 
-public class Director
+public class Director: AuditableEntity
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
