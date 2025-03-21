@@ -36,7 +36,7 @@ The solution follows clean architecture principles with a clear separation of co
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/MovieDatabaseAPI.git
+git clone https://github.com/paulmbaike/MovieDatabaseAPI
 cd MovieDatabaseAPI
 
 # Start the application using Docker Compose
@@ -49,7 +49,7 @@ The API will be available at: http://localhost:5306/swagger
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/MovieDatabaseAPI.git
+git clone https://github.com/paulmbaike/MovieDatabaseAPI
 cd MovieDatabaseAPI
 
 # Update the connection string in appsettings.json to your local database
