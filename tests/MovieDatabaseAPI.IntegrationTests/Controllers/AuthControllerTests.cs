@@ -25,7 +25,7 @@ public class AuthControllerTests : IClassFixture<TestWebApplicationFactory<Progr
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("/api/auth/login", loginRequest);
+        var response = await _client.PostAsJsonAsync("/api/v1/auth/login", loginRequest);
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -46,7 +46,7 @@ public class AuthControllerTests : IClassFixture<TestWebApplicationFactory<Progr
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("/api/auth/login", loginRequest);
+        var response = await _client.PostAsJsonAsync("/api/v1/auth/login", loginRequest);
 
         // Assert
         Assert.Equal(HttpStatusCode.Unauthorized, response.StatusCode);
@@ -64,7 +64,7 @@ public class AuthControllerTests : IClassFixture<TestWebApplicationFactory<Progr
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("/api/auth/register", registerRequest);
+        var response = await _client.PostAsJsonAsync("/api/v1/auth/register", registerRequest);
 
         // Assert
         response.EnsureSuccessStatusCode();
@@ -88,7 +88,7 @@ public class AuthControllerTests : IClassFixture<TestWebApplicationFactory<Progr
         };
 
         // Act
-        var response = await _client.PostAsJsonAsync("/api/auth/register", registerRequest);
+        var response = await _client.PostAsJsonAsync("/api/v1/auth/register", registerRequest);
 
         // Assert
         Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);

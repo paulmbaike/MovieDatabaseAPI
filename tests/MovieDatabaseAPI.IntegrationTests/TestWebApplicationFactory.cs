@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MovieDatabaseAPI.API.Extensions;
 using MovieDatabaseAPI.Core.Entities;
 using MovieDatabaseAPI.Infrastructure.Data.Context;
 
@@ -12,9 +14,11 @@ public class TestWebApplicationFactory<TProgram> : WebApplicationFactory<TProgra
 {
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        builder.UseEnvironment("Testing");
+
         builder.ConfigureServices(services =>
         {
-            // Remove the existing DbContext registration
+            // Find and remove DbContext registration
             var descriptor = services.SingleOrDefault(
                 d => d.ServiceType == typeof(DbContextOptions<AppDbContext>));
 
@@ -23,11 +27,13 @@ public class TestWebApplicationFactory<TProgram> : WebApplicationFactory<TProgra
                 services.Remove(descriptor);
             }
 
-            // Replace with in-memory database
+            // Add in-memory database
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseInMemoryDatabase("InMemoryMovieDbForTesting");
             });
+
+            services.AddVersioning();
 
             // Build the service provider
             var sp = services.BuildServiceProvider();
@@ -37,7 +43,6 @@ public class TestWebApplicationFactory<TProgram> : WebApplicationFactory<TProgra
             {
                 var scopedServices = scope.ServiceProvider;
                 var db = scopedServices.GetRequiredService<AppDbContext>();
-                var logger = scopedServices.GetRequiredService<ILogger<TestWebApplicationFactory<TProgram>>>();
 
                 // Ensure the database is created
                 db.Database.EnsureCreated();
@@ -49,7 +54,8 @@ public class TestWebApplicationFactory<TProgram> : WebApplicationFactory<TProgra
                 }
                 catch (Exception ex)
                 {
-                    logger.LogError(ex, "An error occurred seeding the database. Error: {Message}", ex.Message);
+                    var logger = scopedServices.GetRequiredService<ILogger<TestWebApplicationFactory<TProgram>>>();
+                    logger.LogError(ex, "An error occurred seeding the database with test data.");
                 }
             }
         });

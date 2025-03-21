@@ -14,7 +14,7 @@ public static class AuthHelper
             Password = "Password123"
         };
 
-        var response = await client.PostAsJsonAsync("/api/auth/login", loginRequest);
+        var response = await client.PostAsJsonAsync("/api/v1/auth/login", loginRequest);
         response.EnsureSuccessStatusCode();
 
         var authResponse = await response.Content.ReadFromJsonAsync<AuthResponseDto>();
