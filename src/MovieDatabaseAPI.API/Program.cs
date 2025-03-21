@@ -1,4 +1,8 @@
+using FluentValidation.AspNetCore;
+using FluentValidation;
 using MovieDatabaseAPI.API.Extensions;
+using MovieDatabaseAPI.API.Middlewares;
+using MovieDatabaseAPI.API.Validators;
 using MovieDatabaseAPI.Infrastructure.Data;
 using MovieDatabaseAPI.Infrastructure.Extensions;
 using MovieDatabaseAPI.Services.Extensions;
@@ -8,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddOpenApiDocumentation();
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 builder.Services.AddControllers();
 
@@ -28,6 +34,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+app.UseGlobalExceptionHandler();
 
 using (var scope = app.Services.CreateScope())
 {

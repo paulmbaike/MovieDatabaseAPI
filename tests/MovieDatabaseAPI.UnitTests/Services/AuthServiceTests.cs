@@ -19,8 +19,8 @@ public class AuthServiceTests
         _mockConfiguration = new Mock<IConfiguration>();
         var mockConfigSection = new Mock<IConfigurationSection>();
 
-        mockConfigSection.Setup(x => x.Value).Returns("Test__tU3hXdaKNKL0JdeEomLtuCYZ5kOgS1xS");
-        _mockConfiguration.Setup(x => x["JwtSettings:Secret"]).Returns("Test__tU3hXdaKNKL0JdeEomLtuCYZ5kOgS1xS");
+        mockConfigSection.Setup(x => x.Value).Returns("Test__U05$y0=qq1!gpJ5Mc*29-yk.ymlY8j(xsN(}&5Ro^o[y0IvK(@rY/n=JH@70ZX[");
+        _mockConfiguration.Setup(x => x["JwtSettings:Secret"]).Returns("Test__U05$y0=qq1!gpJ5Mc*29-yk.ymlY8j(xsN(}&5Ro^o[y0IvK(@rY/n=JH@70ZX[");
         _mockConfiguration.Setup(x => x["JwtSettings:Issuer"]).Returns("TestIssuer");
         _mockConfiguration.Setup(x => x["JwtSettings:Audience"]).Returns("TestAudience");
 

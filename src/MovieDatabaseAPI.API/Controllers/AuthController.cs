@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Mvc;
 using MovieDatabaseAPI.Core.DTOs;
 using MovieDatabaseAPI.Core.Interfaces.Services;
 
@@ -8,7 +9,8 @@ namespace MovieDatabaseAPI.API.Controllers;
 /// API controller for user authentication and registration
 /// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/auth")]
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;

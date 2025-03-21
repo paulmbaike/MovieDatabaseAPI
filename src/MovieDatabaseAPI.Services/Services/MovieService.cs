@@ -80,10 +80,10 @@ public class MovieService : IMovieService
             }
         }
 
-        await _movieRepository.AddAsync(movie);
+        var newMovie = await _movieRepository.AddAsync(movie);
 
         // Fetch the complete movie with relationships
-        var createdMovie = await _movieRepository.GetByIdAsync(movie.Id);
+        var createdMovie = await _movieRepository.GetByIdAsync(newMovie.Id);
         return _mapper.Map<MovieDto>(createdMovie);
     }
 

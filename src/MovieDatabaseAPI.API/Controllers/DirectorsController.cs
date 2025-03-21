@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Asp.Versioning;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MovieDatabaseAPI.Core.DTOs;
 using MovieDatabaseAPI.Core.Interfaces.Services;
@@ -9,7 +10,8 @@ namespace MovieDatabaseAPI.API.Controllers;
 /// API controller for managing director resources
 /// </summary>
 [ApiController]
-[Route("api/[controller]")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/directors")]
 [Authorize]
 public class DirectorsController : ControllerBase
 {

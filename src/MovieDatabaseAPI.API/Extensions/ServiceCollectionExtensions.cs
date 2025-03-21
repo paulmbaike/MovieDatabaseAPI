@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using Asp.Versioning;
 using Microsoft.OpenApi.Models;
 
 namespace MovieDatabaseAPI.API.Extensions;
@@ -55,5 +56,18 @@ public static class ServiceCollectionExtensions
             var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
             options.IncludeXmlComments(xmlPath);
         });
-    }   
+    }
+
+    public static void AddVersioning(this IServiceCollection services)
+    {
+        services.AddApiVersioning(options =>
+        {
+            options.DefaultApiVersion = new ApiVersion(1, 0);
+            options.AssumeDefaultVersionWhenUnspecified = true;
+            options.ReportApiVersions = true;
+            options.ApiVersionReader = ApiVersionReader.Combine(
+                new UrlSegmentApiVersionReader(),
+                new HeaderApiVersionReader("X-API-Version"));
+        });
+    }
 }
