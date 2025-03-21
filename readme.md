@@ -60,7 +60,7 @@ cd src/MovieDatabaseAPI.API
 dotnet run
 ```
 
-The API will be available at: https://localhost:7042/swagger
+The API will be available at: http://localhost:5306/swagger
 
 ## API Endpoints
 
