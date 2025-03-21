@@ -1,4 +1,5 @@
 using MovieDatabaseAPI.API.Extensions;
+using MovieDatabaseAPI.Infrastructure.Data;
 using MovieDatabaseAPI.Infrastructure.Extensions;
 using MovieDatabaseAPI.Services.Extensions;
 
@@ -27,5 +28,11 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await Seeder.SeedDatabaseAsync(services);
+}
 
 app.Run();

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieDatabaseAPI.Core.Helpers;
 using MovieDatabaseAPI.Core.Interfaces.Repositories;
+using MovieDatabaseAPI.Infrastructure.Data.Context;
 using MovieDatabaseAPI.Infrastructure.Extensions;
-using static MovieDatabaseAPI.Infrastructure.Data.Context.AppContext;
 
 namespace MovieDatabaseAPI.Infrastructure.Data.Repositories;
 

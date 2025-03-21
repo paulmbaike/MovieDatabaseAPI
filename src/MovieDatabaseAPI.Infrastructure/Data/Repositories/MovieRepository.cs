@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieDatabaseAPI.Core.Entities;
 using MovieDatabaseAPI.Core.Interfaces.Repositories;
-using static MovieDatabaseAPI.Infrastructure.Data.Context.AppContext;
+using MovieDatabaseAPI.Infrastructure.Data.Context;
 
 namespace MovieDatabaseAPI.Infrastructure.Data.Repositories;
 

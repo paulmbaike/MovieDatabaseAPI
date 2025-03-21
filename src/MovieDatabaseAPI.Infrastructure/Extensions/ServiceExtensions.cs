@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MovieDatabaseAPI.Core.Interfaces.Repositories;
+using MovieDatabaseAPI.Infrastructure.Data.Context;
 using MovieDatabaseAPI.Infrastructure.Data.Repositories;
-using static MovieDatabaseAPI.Infrastructure.Data.Context.AppContext;
 
 namespace MovieDatabaseAPI.Infrastructure.Extensions;
 
