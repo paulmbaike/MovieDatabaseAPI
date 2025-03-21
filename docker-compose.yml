@@ -1,0 +1,39 @@
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:latest
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - app_network
+
+  # Movie API
+  movie.api:
+    container_name: movie_database
+    build:
+      context: .
+      dockerfile: src/MovieDatabaseAPI.API/Dockerfile
+    ports:
+      - "5306:8080" # Expose on port 5208
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=MovieDatabase.v1;Username=admin;Password=admin123
+    depends_on:
+      - postgres
+    networks:
+      - app_network
+
+# Volumes for persistent data
+volumes:
+  postgres_data:
+
+# Network for all services
+networks:
+  app_network:
+    driver: bridge
