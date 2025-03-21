@@ -66,7 +66,7 @@ public class ActorServiceTests
         {
             Name = "Brad Pitt",
             Bio = "American actor and producer",
-            DateOfBirth = new DateTime(1963, 12, 18)
+            DateOfBirth = new DateOnly(1963, 12, 18)
         };
 
         var actor = new Actor
@@ -82,7 +82,7 @@ public class ActorServiceTests
             Id = 1,
             Name = "Brad Pitt",
             Bio = "American actor and producer",
-            DateOfBirth = new DateTime(1963, 12, 18)
+            DateOfBirth = new DateOnly(1963, 12, 18)
         };
 
         _mockMapper.Setup(m => m.Map<Actor>(createActorDto)).Returns(actor);

@@ -12,9 +12,6 @@ public class CreateActorValidator : AbstractValidator<CreateActorDto>
 
         RuleFor(x => x.Bio).MaximumLength(2000)
             .WithMessage("Bio must not exceed 2000 characters");
-
-        RuleFor(x => x.DateOfBirth).LessThanOrEqualTo(DateTime.Now)
-            .WithMessage("Date of birth cannot be in the future");
     }
 }
 
@@ -27,8 +24,5 @@ public class UpdateActorValidator : AbstractValidator<UpdateActorDto>
 
         RuleFor(x => x.Bio).MaximumLength(2000)
             .WithMessage("Bio must not exceed 2000 characters");
-
-        RuleFor(x => x.DateOfBirth).LessThanOrEqualTo(DateTime.Now)
-            .WithMessage("Date of birth cannot be in the future");
     }
 }
